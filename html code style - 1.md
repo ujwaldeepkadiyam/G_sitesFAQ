@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>God Is Light</title>
   <style>
-    /* Hide scrollbar for modern browsers */
+    /* Hide scrollbars */
     body::-webkit-scrollbar { display: none; }
     body { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -20,25 +20,44 @@
       line-height: 1.7;
     }
 
-    .header {
-      background-color: #000;
-      color: pink;
-      padding: 24px 0;
+    /* Header section */
+    .custom-header {
+      background-color: black;
+      padding: 80px 20px 60px;
       text-align: center;
-      font-size: 32px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      background-image: url('/mnt/data/581386c7-d174-4feb-a4bd-2108e7bef6c0.png'); /* optional background */
+      background-size: cover;
+      background-position: center;
     }
 
+    .header-text-wrapper {
+      display: inline-block;
+      padding: 0 30px;
+      position: relative;
+    }
+
+    .header-text {
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .header-underline {
+      height: 6px;
+      background-color: #ff3c3c;
+      margin-top: 10px;
+      border-radius: 3px;
+    }
+
+    /* Content section */
     .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 40px 30px;
+      max-width: 100%;
+      padding: 40px 5%;
       background: linear-gradient(to bottom right, #e8f5e9, #ede7f6);
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      margin: 40px auto;
     }
 
     h2, h3 {
@@ -100,12 +119,12 @@
     }
   </style>
 </head>
-<body>
+</html>
 ```
 
 
+![image](https://github.com/user-attachments/assets/6cfdeee3-1c47-4c5d-9dd1-42044fcb4792)
 
-![image](https://github.com/user-attachments/assets/91a1396c-0c0b-4d8e-a404-c9b4e0fd6f69)
 
 
 # Style-b
