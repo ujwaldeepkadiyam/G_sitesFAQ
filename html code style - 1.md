@@ -1,4 +1,86 @@
-# Style -a
+# style - a
+
+```html
+<!DOCTYPE html>
+<html lang="="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Hope in Synoptic Gospels</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #000;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      font-size: 2.3rem;
+      margin: 0;
+      display: inline-block;
+      border-bottom: 4px solid red;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+    h2 {
+      color: #b30000;
+      margin-top: 2rem;
+      font-size: 1.6rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      font-size: 1.3rem;
+      color: #333;
+    }
+    p {
+      line-height: 1.7;
+      font-size: 1.1rem;
+      color: #222;
+    }
+    blockquote {
+      background: #fff3f3;
+      border-left: 5px solid red;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background-color: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #fdd;
+      color: #b30000;
+    }
+  </style>
+</head>
+```
+
+<img width="831" height="690" alt="image" src="https://github.com/user-attachments/assets/99a05fc1-f146-46f4-8ac0-df415b3f2925" />
+
+
+# Style - b
 
 ```html
 <!DOCTYPE html>
