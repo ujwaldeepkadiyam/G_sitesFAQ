@@ -1,19 +1,19 @@
 - create slides in pdf. you can use marp or latex or powerpoint for this.
 - then run the notebook by uploading this pdf in colab
 - colab link is
-- ```url
-  https://colab.research.google.com/drive/1fcc1G1OCaaKMGrv4LtOn6ygkORsiVgWt#scrollTo=Dm1LNHWPUT0B
-  ```
+```url
+https://colab.research.google.com/drive/1fcc1G1OCaaKMGrv4LtOn6ygkORsiVgWt#scrollTo=Dm1LNHWPUT0B
+```
 - download slides_images.zip and slides.marp.md
 - open them in marp.
 - export it as html in marp
 - upload this exported marp html slideshow and slides_images/ folder to github.io
 - this will allow users to download slideshow as html but no images will be downloaded, so it will be empty.
-- addendum: The python note book code is given below:
+- **addendum**: The python note book code is given below:
   
 ```python
 !pip install pdf2image nbformat
- !apt-get install -y poppler-utils
+!apt-get install -y poppler-utils
 ```
 ```python
 from pdf2image import convert_from_path
