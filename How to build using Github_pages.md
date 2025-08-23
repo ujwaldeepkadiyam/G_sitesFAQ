@@ -3,7 +3,7 @@
 - open gitbash or cmd
 - run
 ```
-    bundle exec jekyll serve
+bundle exec jekyll serve
 ```
 - view output at the   address  displayed in gitbash/cmd
 - If you want to give specific port number, then run
