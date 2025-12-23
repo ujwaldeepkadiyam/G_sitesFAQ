@@ -2,6 +2,35 @@
 
 ---
 
+## 0. A few points to remember
+* Use the following structure in latex
+```
+\section{2. Data Cleaning}
+
+\subsection{2.1 Handling Missing Values}
+
+\subsubsection{2.1.1 Small Amount of Missing Data}
+
+\underline{\textbf{Continuous Data}}
+Explanation text goes here.
+```
+* **Manually number** sections and subsections etc in `LaTeX → Pandoc` Workflow because 
+   * Pandoc does **not execute LaTeX counters** (`\setcounter{}`) when converting to HTML.
+   * Automatic section numbering in LaTeX is **not reliably preserved** in Pandoc HTML output.
+   * Pandoc applies its **own numbering logic**, which can conflict with mid-document resets.
+   * Mathematical expressions in headings are **removed or altered** by Pandoc in HTML.
+   * Manual numbering ensures **identical numbering** in both PDF and HTML outputs.
+   * It avoids reliance on Pandoc flags such as `--number-sections`.
+   * It prevents broken anchors and missing references in HTML.
+   * It keeps one **single source file** for both PDF and web publishing.
+   * Manual numbering gives **full control** over chapter insertion and reordering.
+   * This approach is **stable for long lecture notes and textbooks**.
+
+**Rule of thumb:**
+If the same document must produce **both LaTeX PDF and Pandoc HTML**, manual numbering is the safest and most predictable choice.
+
+---
+
 ## 1. Create your project folder
 
 ```text
