@@ -185,6 +185,19 @@ Output:
 ```text
 lect.html  ← fully self-contained (math + images)
 ```
+* If you want the sections to be numbered in html, then use this
+```
+  pandoc lect.tex \
+  -s \
+  -o lect.html \
+  --mathjax \
+  --embed-resources \
+  -c style.css \
+  --resource-path=.:images \
+  --number-sections \
+  --toc \
+  --toc-depth=4
+```
 
 ---
 
