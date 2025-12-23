@@ -28,7 +28,8 @@ Explanation text goes here.
 
 **Rule of thumb:**
 If the same document must produce **both LaTeX PDF and Pandoc HTML**, manual numbering is the safest and most predictable choice.
-
+ * Dont `\underline{\textbf{something}}` in latex. Only `\textbf{}` and use css to underline it.
+ * Images drawn using tikz wont render in pandoc. so insert images, then render using pandoc.
 ---
 
 ## 1. Create your project folder
@@ -196,39 +197,108 @@ This is only for your **local** `lect.html` preview, not required by al-folio.
 `style.css`:
 
 ```css
-/* SECTION → your "H2" */
-h1 {
+/* ================================
+   Wrapper for Pandoc content
+   ================================ */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ================================
+   Headings (match LaTeX style)
+   ================================ */
+.notes-content h1,
+.notes-content h2,
+.notes-content h3,
+.notes-content h4,
+.notes-content h5,
+.notes-content h6 {
+  color: #cc33cc;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
+/* Center main title / top-level sections if needed */
+.notes-content h1 {
   text-align: center;
-  color: blue;
-  font-weight: bold;
-}
-h1 strong {
-  color: #cc33cc;
 }
 
-/* SUBSECTION → your "H3" */
-h2 {
-  text-align: left;
-  color: blue;
-  font-weight: bold;
-}
-h2 strong {
-  color: #cc33cc;
+/* Prevent strong from overriding heading color */
+.notes-content h1 strong,
+.notes-content h2 strong,
+.notes-content h3 strong,
+.notes-content h4 strong {
+  color: inherit;
 }
 
-/* SUBSUBSECTION → your "H4" */
-h3 {
-  text-align: left;
-  color: blue;
-  font-weight: bold;
-}
-h3 strong {
-  color: #cc33cc;
+/* ================================
+   Tables (CRITICAL)
+   ================================ */
+.notes-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95em;
 }
 
-body {
-  line-height: 1.5;
-  font-size: 17px;
+.notes-content th,
+.notes-content td {
+  border: 1px solid #444;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.notes-content th {
+  background-color: #f6e9ff;
+  color: #cc33cc;
+  font-weight: bold;
+}
+
+.notes-content tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ================================
+   tcolorbox equivalents
+   ================================ */
+.notes-content .tcolorbox {
+  padding: 12px 14px;
+  margin: 16px 0;
+  border-radius: 6px;
+}
+
+/* Important box */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1px solid #cc3333;
+}
+
+/* Lab / activity box */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1px solid #339966;
+}
+
+/* Code box */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1px solid #3366cc;
+}
+
+/* ================================
+   Code formatting
+   ================================ */
+.notes-content .codebox pre,
+.notes-content pre {
+  margin: 0;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  overflow-x: auto;
 }
 ```
 
