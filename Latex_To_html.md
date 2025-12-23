@@ -46,98 +46,140 @@ my-lecture/
 
 ---
 
-## 2. Create your LaTeX lecture file
+## 2. Create your LaTeX lecture file using the following preamble
 
 `lect.tex`:
 
 ```tex
 \documentclass[12pt]{article}
 
-% Basic packages
+% --------------------------------------------------
+% Page layout
+% --------------------------------------------------
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{amsmath, amssymb}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{enumitem}
 
+% --------------------------------------------------
+% Mathematics
+% --------------------------------------------------
+\usepackage{amsmath, amssymb}
+
+% --------------------------------------------------
+% Graphics and figures
+% --------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{pictures/}}
+
+% --------------------------------------------------
+% Colors and section formatting
+% --------------------------------------------------
 \usepackage{xcolor}
 \usepackage{titlesec}
 
+% --------------------------------------------------
+% Lists
+% --------------------------------------------------
+\usepackage{enumitem}
+
+% --------------------------------------------------
+% Hyperlinks
+% --------------------------------------------------
+\usepackage{hyperref}
+
+% --------------------------------------------------
+% Paragraph spacing
+% --------------------------------------------------
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\emergencystretch=2em
+
+% --------------------------------------------------
+% Disable automatic numbering (manual numbering only)
+% --------------------------------------------------
+\setcounter{secnumdepth}{0}
+
+% --------------------------------------------------
 % Define colors
+% --------------------------------------------------
 \definecolor{myblue}{RGB}{0,0,255}
 \definecolor{mypink}{HTML}{cc33cc}
 
-% H2 equivalent
+% --------------------------------------------------
+% Section styles (manual numbering)
+% --------------------------------------------------
 \titleformat{\section}
-  {\Large\color{myblue}\bfseries\centering}
-  {}{0pt}
-  {\color{mypink}}
+{\large\color{myblue}\bfseries\centering}
+{}{0pt}
+{\color{mypink}}
 
-% H3 equivalent
 \titleformat{\subsection}
-  {\large\color{myblue}\bfseries}
-  {}{0pt}
-  {\color{mypink}}
+{\normalsize\color{myblue}\bfseries}
+{}{0pt}
+{\color{mypink}}
 
-% H4 equivalent
 \titleformat{\subsubsection}
-  {\normalsize\color{myblue}\bfseries}
-  {}{0pt}
-  {\color{mypink}}
+{\small\color{myblue}\bfseries}
+{}{0pt}
+{\color{mypink}}
 
-% Optional: nicer section spacing
-\setlength{\parskip}{6pt}
-\setlength{\parindent}{0pt}
+% --------------------------------------------------
+% TikZ (FIXED: positioning enabled)
+% --------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% --------------------------------------------------
+% tcolorbox (SAFE with listings)
+% --------------------------------------------------
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listings, breakable}
+
+\tcbset{
+	before skip=8pt,
+	after skip=8pt,
+	boxrule=0.6pt,
+	arc=2mm
+}
+
+% --------------------------------------------------
+% Custom boxes
+% --------------------------------------------------
+\newtcolorbox{impbox}{
+	colback=red!10,
+	colframe=red!45,
+	breakable
+}
+
+\newtcolorbox{labbox}{
+	colback=green!6,
+	colframe=green!50!black,
+	breakable
+}
+
+\newtcblisting{codebox}{
+	colback=blue!5,
+	colframe=blue!55!black,
+	boxrule=0.7pt,
+	arc=2mm,
+	breakable,
+	listing only,
+	listing options={
+		language=Python,
+		basicstyle=\ttfamily\small,
+		columns=fullflexible,
+		breaklines=true,
+		showstringspaces=false,
+		tabsize=4
+	}
+}
+
+% -------------------- Title --------------------
+\title{\textbf{ML End-to-End Project Steps}}
+\author{}
+\date{}
 
 \begin{document}
-
-\section*{Algebraic Structures – Lecture Notes}
-
-These are long-form lecture notes written in \LaTeX, similar in spirit to a
-single long Markdown document.
-
-You can write normal text in paragraphs. Math works with
-inline notation like $a \in \mathbb{Z}_n$ and display math:
-
-\[
-a + b \equiv c \pmod{n}.
-\]
-
-\subsection*{Example: Homomorphism $\phi : \mathbb{Z} \to \mathbb{Z}_n$}
-
-Define
-\[
-\phi(a) = a \bmod n.
-\]
-
-Then
-\[
-\phi(a+b) = \phi(a) + \phi(b)
-\]
-so $\phi$ is a group homomorphism from $(\mathbb{Z},+)$ to $(\mathbb{Z}_n,+)$.
-
-\subsection*{Including an Image}
-
-Here is an example of inserting an image (e.g., a diagram of $\mathbb{Z}_n$):
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/image1.jpg}
-  \caption{Modulo $n$ wheel illustrating the homomorphism $a \mapsto a \bmod n$.}
-  \label{fig:mod-wheel}
-\end{figure}
-
-Continue with more sections, examples, and problems as needed.
-You can treat this as “one long page” of notes.
-
-\subsection*{Practice Problems}
-
-\begin{enumerate}[label=\textbf{Problem \arabic*:}]
-  \item Show that $(\mathbb{Z}_6, +)$ is a cyclic group.
-  \item Find all generators of $(\mathbb{Z}_{10}, +)$.
-  \item Prove that $\phi(a) = a \bmod 4$ is a homomorphism $\mathbb{Z} \to \mathbb{Z}_4$.
-\end{enumerate}
-
+matter here
 \end{document}
 ```
 
