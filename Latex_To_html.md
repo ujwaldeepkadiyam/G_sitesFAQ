@@ -52,8 +52,6 @@ my-lecture/
 `lect.tex`:
 
 ```tex
-\documentclass[12pt]{article}
-
 % --------------------------------------------------
 % Page layout
 % --------------------------------------------------
@@ -69,7 +67,7 @@ my-lecture/
 % --------------------------------------------------
 \usepackage{graphicx}
 \usepackage{float}
-\graphicspath{{pictures/}}
+\graphicspath{{images/}}
 
 % --------------------------------------------------
 % Colors and section formatting
@@ -98,6 +96,12 @@ my-lecture/
 % Disable automatic numbering (manual numbering only)
 % --------------------------------------------------
 \setcounter{secnumdepth}{0}
+% --------------------------------------------------
+% For colors in tables
+% --------------------------------------------------
+
+\usepackage{colortbl}
+\usepackage{xcolor}
 
 % --------------------------------------------------
 % Define colors
@@ -127,7 +131,7 @@ my-lecture/
 % TikZ (FIXED: positioning enabled)
 % --------------------------------------------------
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning}
+\usetikzlibrary{arrows.meta, positioning,shapes.geometric}
 
 % --------------------------------------------------
 % tcolorbox (SAFE with listings)
@@ -180,6 +184,7 @@ my-lecture/
 \date{}
 
 \begin{document}
+	\maketitle
 matter here
 \end{document}
 ```
@@ -206,25 +211,35 @@ This is only for your **local** `lect.html` preview, not required by al-folio.
   line-height: 1.6;
 }
 
+.notes-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 14px auto;
+}
+
+
 /* ================================
    Headings (match LaTeX style)
    ================================ */
-.notes-content h1,
+.notes-content h1 {
+  color: #cc33cc;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
 .notes-content h2,
 .notes-content h3,
 .notes-content h4,
 .notes-content h5,
 .notes-content h6 {
   color: #cc33cc;
-  font-weight: bold;
+  font-weight: normal;
   text-align: left;
-  margin-top: 1.4em;
-  margin-bottom: 0.6em;
-}
-
-/* Center main title / top-level sections if needed */
-.notes-content h1 {
-  text-align: center;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
 }
 
 /* Prevent strong from overriding heading color */
@@ -234,6 +249,7 @@ This is only for your **local** `lect.html` preview, not required by al-folio.
 .notes-content h4 strong {
   color: inherit;
 }
+
 
 /* ================================
    Tables (CRITICAL)
@@ -300,6 +316,142 @@ This is only for your **local** `lect.html` preview, not required by al-folio.
   font-size: 0.9em;
   overflow-x: auto;
 }
+
+/* ================================
+   Pandoc Table of Contents
+   ================================ */
+
+#TOC {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 1em 1.5em;
+  background: #f8f9fb;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#TOC h2 {
+  text-align: center;
+  color: #cc33cc;
+  margin-bottom: 0.5em;
+}
+
+#TOC ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#TOC li {
+  margin: 6px 0;
+}
+
+#TOC a {
+  text-decoration: none;
+  color: #0033aa;
+}
+
+#TOC a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Wrapper
+   ========================================= */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.65;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================================
+   IMPORTANT BOX (impbox)
+   ========================================= */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1.5px solid #cc3333;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+/* =========================================
+   LAB / ACTIVITY BOX (labbox)
+   ========================================= */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1.5px solid #339966;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   CODE BOX — LaTeX \ttfamily look (Pandoc)
+   ========================================= */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1.5px solid #3366cc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 20px 0;
+}
+
+/* Pandoc puts code as <p> inside .codebox */
+.notes-content .codebox p {
+  margin: 0;
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    "JetBrains Mono",
+    Consolas,
+    "Courier New",
+    monospace;
+
+  font-size: 0.95em;
+  font-weight: 700;              /* 🔑 makes it LaTeX-dark */
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;         /* keeps line breaks */
+  word-break: break-word;
+
+  color: #000;                   /* strong ink like PDF */
+  background: transparent;
+}
+
+/* Inline code (Pandoc: <code>something</code>) */
+.notes-content code {
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    Consolas,
+    monospace;
+
+  font-weight: 700;
+  background: #f4f6fb;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #cc33cc;
+}
+
+/* Subtle depth like your screenshot */
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+
+/* =========================================
+   Depth & polish
+   ========================================= */
+.notes-content .impbox,
+.notes-content .labbox,
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
 ```
 
 ---
@@ -383,29 +535,257 @@ Right below the YAML, paste **this exact block**:
 
 ```html
 <style>
-/* Apply to all headings inside the LaTeX content */
-.notes-content h1,
+/* ================================
+   Wrapper for Pandoc content
+   ================================ */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.notes-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 14px auto;
+}
+
+
+/* ================================
+   Headings (match LaTeX style)
+   ================================ */
+.notes-content h1 {
+  color: #cc33cc;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
 .notes-content h2,
 .notes-content h3,
 .notes-content h4,
 .notes-content h5,
 .notes-content h6 {
-  color: #cc33cc !important;
-  font-weight: bold !important; /* normal if we dont want bold font*/
-  text-align: left !important;
+  color: #cc33cc;
+  font-weight: normal;
+  text-align: left;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
 }
 
-/* If you want H1 centered (like your old style), keep this: */
-.notes-content h1 {
-  text-align: center !important;
-}
-
-/* Remove strong override since heading already has the color */
+/* Prevent strong from overriding heading color */
 .notes-content h1 strong,
 .notes-content h2 strong,
-.notes-content h3 strong {
-  color: inherit !important;
+.notes-content h3 strong,
+.notes-content h4 strong {
+  color: inherit;
 }
+
+
+/* ================================
+   Tables (CRITICAL)
+   ================================ */
+.notes-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95em;
+}
+
+.notes-content th,
+.notes-content td {
+  border: 1px solid #444;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.notes-content th {
+  background-color: #f6e9ff;
+  color: #cc33cc;
+  font-weight: bold;
+}
+
+.notes-content tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ================================
+   tcolorbox equivalents
+   ================================ */
+.notes-content .tcolorbox {
+  padding: 12px 14px;
+  margin: 16px 0;
+  border-radius: 6px;
+}
+
+/* Important box */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1px solid #cc3333;
+}
+
+/* Lab / activity box */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1px solid #339966;
+}
+
+/* Code box */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1px solid #3366cc;
+}
+
+/* ================================
+   Code formatting
+   ================================ */
+.notes-content .codebox pre,
+.notes-content pre {
+  margin: 0;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  overflow-x: auto;
+}
+
+/* ================================
+   Pandoc Table of Contents
+   ================================ */
+
+#TOC {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 1em 1.5em;
+  background: #f8f9fb;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#TOC h2 {
+  text-align: center;
+  color: #cc33cc;
+  margin-bottom: 0.5em;
+}
+
+#TOC ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#TOC li {
+  margin: 6px 0;
+}
+
+#TOC a {
+  text-decoration: none;
+  color: #0033aa;
+}
+
+#TOC a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Wrapper
+   ========================================= */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.65;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================================
+   IMPORTANT BOX (impbox)
+   ========================================= */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1.5px solid #cc3333;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+/* =========================================
+   LAB / ACTIVITY BOX (labbox)
+   ========================================= */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1.5px solid #339966;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   CODE BOX — LaTeX \ttfamily look (Pandoc)
+   ========================================= */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1.5px solid #3366cc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 20px 0;
+}
+
+/* Pandoc puts code as <p> inside .codebox */
+.notes-content .codebox p {
+  margin: 0;
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    "JetBrains Mono",
+    Consolas,
+    "Courier New",
+    monospace;
+
+  font-size: 0.95em;
+  font-weight: 700;              /* 🔑 makes it LaTeX-dark */
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;         /* keeps line breaks */
+  word-break: break-word;
+
+  color: #000;                   /* strong ink like PDF */
+  background: transparent;
+}
+
+/* Inline code (Pandoc: <code>something</code>) */
+.notes-content code {
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    Consolas,
+    monospace;
+
+  font-weight: 700;
+  background: #f4f6fb;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #cc33cc;
+}
+
+/* Subtle depth like your screenshot */
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+
+/* =========================================
+   Depth & polish
+   ========================================= */
+.notes-content .impbox,
+.notes-content .labbox,
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+
 </style>
 
 <div class="notes-content">
@@ -535,28 +915,254 @@ title: Algebraic Structures – Lecture Notes
 ---
 
 <style>
-/* Apply to all headings inside the LaTeX content */
-.notes-content h1,
+/* ================================
+   Wrapper for Pandoc content
+   ================================ */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.notes-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 14px auto;
+}
+
+
+/* ================================
+   Headings (match LaTeX style)
+   ================================ */
+.notes-content h1 {
+  color: #cc33cc;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
 .notes-content h2,
 .notes-content h3,
 .notes-content h4,
 .notes-content h5,
 .notes-content h6 {
-  color: #cc33cc !important;
-  font-weight: bold !important; /* normal if we dont want bold font*/
-  text-align: left !important;
+  color: #cc33cc;
+  font-weight: normal;
+  text-align: left;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
 }
 
-/* If you want H1 centered (like your old style), keep this: */
-.notes-content h1 {
-  text-align: center !important;
-}
-
-/* Remove strong override since heading already has the color */
+/* Prevent strong from overriding heading color */
 .notes-content h1 strong,
 .notes-content h2 strong,
-.notes-content h3 strong {
-  color: inherit !important;
+.notes-content h3 strong,
+.notes-content h4 strong {
+  color: inherit;
+}
+
+
+/* ================================
+   Tables (CRITICAL)
+   ================================ */
+.notes-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95em;
+}
+
+.notes-content th,
+.notes-content td {
+  border: 1px solid #444;
+  padding: 8px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.notes-content th {
+  background-color: #f6e9ff;
+  color: #cc33cc;
+  font-weight: bold;
+}
+
+.notes-content tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ================================
+   tcolorbox equivalents
+   ================================ */
+.notes-content .tcolorbox {
+  padding: 12px 14px;
+  margin: 16px 0;
+  border-radius: 6px;
+}
+
+/* Important box */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1px solid #cc3333;
+}
+
+/* Lab / activity box */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1px solid #339966;
+}
+
+/* Code box */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1px solid #3366cc;
+}
+
+/* ================================
+   Code formatting
+   ================================ */
+.notes-content .codebox pre,
+.notes-content pre {
+  margin: 0;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  overflow-x: auto;
+}
+
+/* ================================
+   Pandoc Table of Contents
+   ================================ */
+
+#TOC {
+  max-width: 900px;
+  margin: 2em auto;
+  padding: 1em 1.5em;
+  background: #f8f9fb;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#TOC h2 {
+  text-align: center;
+  color: #cc33cc;
+  margin-bottom: 0.5em;
+}
+
+#TOC ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#TOC li {
+  margin: 6px 0;
+}
+
+#TOC a {
+  text-decoration: none;
+  color: #0033aa;
+}
+
+#TOC a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   Wrapper
+   ========================================= */
+.notes-content {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.65;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =========================================
+   IMPORTANT BOX (impbox)
+   ========================================= */
+.notes-content .impbox {
+  background-color: #ffe6e6;
+  border: 1.5px solid #cc3333;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+/* =========================================
+   LAB / ACTIVITY BOX (labbox)
+   ========================================= */
+.notes-content .labbox {
+  background-color: #eef9ee;
+  border: 1.5px solid #339966;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 18px 0;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   CODE BOX — LaTeX \ttfamily look (Pandoc)
+   ========================================= */
+.notes-content .codebox {
+  background-color: #f0f6ff;
+  border: 1.5px solid #3366cc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 20px 0;
+}
+
+/* Pandoc puts code as <p> inside .codebox */
+.notes-content .codebox p {
+  margin: 0;
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    "JetBrains Mono",
+    Consolas,
+    "Courier New",
+    monospace;
+
+  font-size: 0.95em;
+  font-weight: 700;              /* 🔑 makes it LaTeX-dark */
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;         /* keeps line breaks */
+  word-break: break-word;
+
+  color: #000;                   /* strong ink like PDF */
+  background: transparent;
+}
+
+/* Inline code (Pandoc: <code>something</code>) */
+.notes-content code {
+  font-family:
+    "Latin Modern Mono",
+    "Computer Modern Typewriter",
+    Consolas,
+    monospace;
+
+  font-weight: 700;
+  background: #f4f6fb;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #cc33cc;
+}
+
+/* Subtle depth like your screenshot */
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+
+/* =========================================
+   Depth & polish
+   ========================================= */
+.notes-content .impbox,
+.notes-content .labbox,
+.notes-content .codebox {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
 </style>
 
