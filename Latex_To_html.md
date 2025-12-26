@@ -461,13 +461,18 @@ This is only for your **local** `lect.html` preview, not required by al-folio.
 From inside `my-lecture/`:
 
 ```bash
-pandoc lect.tex \
+pandoc ML_Project_Instructions_Handout_Website.tex \
+  --from=latex \
   -s \
   -o lect.html \
+  --toc \
+  --toc-depth=1 \
+  --wrap=preserve \
   --mathjax \
   --embed-resources \
   -c style.css \
   --resource-path=.:images
+
 ```
 
 * `--embed-resources` → images + CSS inlined (Base64 etc.)
