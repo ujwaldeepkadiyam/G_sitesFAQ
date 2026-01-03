@@ -11,7 +11,7 @@
 
 \subsubsection{2.1.1 Small Amount of Missing Data}
 
-\underline{\textbf{Continuous Data}}
+\textbf{Continuous Data}
 Explanation text goes here.
 ```
 * **Manually number** sections and subsections etc in `LaTeX → Pandoc` Workflow because 
