@@ -1,6 +1,6 @@
 # How to download a play list in mp4 in `githbash`
 
-- Open `gitbash` in the corresponding folder
+- Open `gitbash` in the folder where `yt-dlp.exe` is located.
 
 ```bash
 ./yt-dlp.exe \
