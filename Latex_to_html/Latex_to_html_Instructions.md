@@ -512,7 +512,7 @@ pandoc ML_Project_Instructions_Handout_Website.tex \
   --lua-filter=back_to_toc.lua   
 
 ```
-* if using `powershell` replace `\` with backtick (`)
+* if using `powershell` replace `\` with backtick `
 * `--embed-resources` → images + CSS inlined (Base64 etc.)
 * `--resource-path=.:images` → lets Pandoc find `images/image1.jpg`
 * `--lua-filter=back_to_toc.lua` . If you want table of contents, put this file in the same folder as .tex file and run pandoc with this command.
