@@ -509,7 +509,7 @@ pandoc ML_Project_Instructions_Handout_Website.tex \
   --embed-resources \
   -c style.css \
   --resource-path=.:images \
-  --lua-filter=back_to_toc.lua  # If you want table of contents, put this file in the same folder as .tex file and run pandoc with this command.
+  --lua-filter=back_to_toc.lua   
 
 ```
 
