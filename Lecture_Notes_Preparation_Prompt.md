@@ -21,6 +21,24 @@
 
 * Do **not** assume prior knowledge unless explicitly stated earlier.
 
+* Notes should be end-to-end, in one consistent, deeply explanatory, textbook-grade prose, matching the exact explanatory density, tone, and flow of the scaling subsection you just showed.
+
+That means:
+
+Long, continuous paragraphs
+
+Slow conceptual buildup
+
+No “section hopping” feeling
+
+No bullet-style thinking
+
+No compressed definitions
+
+No teaching voice, no meta
+
+Reads like a published undergraduate textbook chapter
+
 ---
 
 ## 2. Language Requirements
