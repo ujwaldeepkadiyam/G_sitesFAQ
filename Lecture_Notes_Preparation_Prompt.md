@@ -148,20 +148,7 @@ Rules:
 
 ## 8. Concept Introduction Discipline
 
-Before using any of the following, they must be **explicitly introduced and explained**:
-
-* Virtual machine
-* Hypervisor
-* Kernel
-* User space
-* Resource pooling
-* Load balancer
-* Stateless vs stateful services
-* Scaling (vertical and horizontal)
-* Container image
-* Isolation
-* Orchestration
-
+Before using any of the term, they must be **explicitly introduced and explained**:
 No unexplained jargon.
 
 ---
