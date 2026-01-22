@@ -5,13 +5,13 @@
 ## 0. A few points to remember
 * Use the following structure in latex
 ```
-\section{2. Data Cleaning}
-
+\section{2. Data Cleaning} 
+Explanation text goes here.
 \subsection{2.1 Handling Missing Values}
-
-\subsubsection{2.1.1 Small Amount of Missing Data}
-
-\textbf{Continuous Data}
+Explanation text goes here.
+ \subsubsection{2.1.1 Small Amount of Missing Data} 
+Explanation text goes here.
+\textbf{Continuous Data} 
 Explanation text goes here.
 ```
 * **Manually number** sections and subsections etc in `LaTeX → Pandoc` Workflow because 
