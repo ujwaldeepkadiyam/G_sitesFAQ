@@ -31,7 +31,8 @@ pip install jupytext
 6. Then run the following command
  
 ```
-jupytext --to notebook file_name.md
+jupytext --to "notebook file_name.md"
 ```
+Put the file name in quotes.
 
 
