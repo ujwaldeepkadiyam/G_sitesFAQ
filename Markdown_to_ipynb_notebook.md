@@ -17,20 +17,18 @@ jupyter:
 
 2. Save it in your preferred directory.
 3. Open git bash in the folder where this markdown file is present.
-4. Activate conda environment using `conda activate'. This is the python version that is used.   
+4. Activate conda environment using `conda activate'. This is the python version that is used.
+```
+conda init bash
+conda activate base
+```
 5. jupytertext should be installed in this environment. Run the command below to install it.
 
 ```python
 pip install jupytext
 ```     
          
-4c. Activate this conda environment using,
-   
-```
-conda activate base
-```
-   
-5. Then run the following command
+6. Then run the following command
  
 ```
 jupytext --to notebook file_name.md
