@@ -139,3 +139,61 @@ Once your JavaScript runtime environment is active on your system path and `yt-d
 ####   Note
 - Download `cookies.txt` from chrome using extension
 - put `ffmpeg` in the same folder as `ytdlp`
+
+
+# Guide: Resolving Expired Cookies and Rate-Limiting in `yt-dlp`
+
+### The Problem
+
+When running large playlist downloads, you may encounter the following error:
+
+```text
+WARNING: [youtube] The provided YouTube account cookies are no longer valid. They have likely been rotated in the browser as a security measure.
+
+```
+
+YouTube forces session tokens to expire or rotate if its automated systems detect a rapid, continuous stream of automated requests coming from a single account session. Once your `cookies.txt` file becomes invalid, YouTube triggers a bot-protection challenge and blocks the download.
+
+To fix this, you must export a fresh cookie batch and introduce human-like pacing flags to prevent aggressive session flagging.
+
+---
+
+## Step 1: Export a Fresh `cookies.txt` File
+
+1. Open your web browser and navigate to **YouTube.com**.
+2. Perform a manual action (e.g., click a video or refresh the home page) to ensure the browser establishes a live, fully authenticated session.
+3. Open your cookie exporter extension and download a new **`cookies.txt`** file.
+4. Overwrite the old, expired `cookies.txt` file inside your working directory (`D:/YOUTUBE-DOWNLOADER`) with this new file.
+
+---
+
+## Step 2: Configure Download Delays (Rate-Limit Bypass)
+
+To stop YouTube from instantly invalidating your fresh cookies, add randomized sleep intervals between video tracks. This breaks the predictable timing pattern typical of scraper scripts and emulates normal user browsing behavior.
+
+Execute this updated command in your terminal:
+
+```bash
+./yt-dlp.exe \
+  --ffmpeg-location . \
+  --cookies cookies.txt \
+  --sleep-requests 2 \
+  --sleep-interval 5 \
+  --max-sleep-interval 15 \
+  -f "bv*[height<=1080]+ba[ext=m4a]/b[height<=1080]" \
+  -N 2 \
+  -c \
+  --download-archive downloaded.txt \
+  --merge-output-format mp4 \
+  -o "%(playlist_title)s/Ep-%(playlist_index)03d - %(title)s.mp4" \
+  "https://www.youtube.com/playlist?list=PLiBmMNJci272DeFpLsrxofDWQO3VkO89r"
+
+```
+
+---
+
+## Key Flags Explained
+
+* **`--sleep-requests 2`**: Pauses execution for 2 seconds between sequential backend API data requests. This avoids spamming YouTube's player endpoints.
+* **`--sleep-interval 5 --max-sleep-interval 15`**: Instructs `yt-dlp` to wait for a randomized duration between **5 and 15 seconds** before initiating the download for the next playlist item.
+* **`-N 2`**: Restricts the concurrent fragment download threads from 4 down to 2. While slightly more conservative on bandwidth usage, it prevents high-frequency connection spikes that trigger security flags mid-playlist.
