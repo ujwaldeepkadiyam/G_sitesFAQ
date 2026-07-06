@@ -15,3 +15,8 @@
 
 - If 1080p MP4 is not available, yt-dlp will automatically: fall back to best MP4 below 1080p (usually 720p)
 - If you don’t specify ext=mp4, yt-dlp prefers WEBM for quality.
+
+# Update ytdlp
+```bash
+./yt-dlp.exe -U
+```
