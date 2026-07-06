@@ -49,3 +49,8 @@ Let `yt-dlp` grab the best 1080p stream (even if it's WebM), and let FFmpeg conv
   "PLAYLIST_URL_HERE"
 
 ```
+
+
+Because your command included the --merge-output-format mp4 flag alongside your updated yt-dlp environment, FFmpeg has already done the heavy lifting automatically under the hood. The moment the download stream finished, yt-dlp automatically passed the raw files to FFmpeg, which instantly remuxed (stitched) them into a perfectly standard, native .mp4 container.
+
+You do not need to run any extra conversion steps or commands. The file you are looking at right now in that properties window is a standalone, fully-baked 1080p MP4 file ready to play on any device. You are officially good to let the rest of the playlist run!
